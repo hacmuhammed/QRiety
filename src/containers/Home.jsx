@@ -15,7 +15,7 @@ function Home() {
             Your One-Stop Solution for{" "}
             <span style={{ color: "#5AC5B1" }}>QR</span> Code Generation
           </h1>
-          <p>Create, Customize, and Share QR Codes with Ease.</p>
+          <p>Create, Customize and Share QR Codes with Ease.</p>
         </div>
         <button
           onClick={hadleCreateClick}
