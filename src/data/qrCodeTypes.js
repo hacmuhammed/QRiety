@@ -1,47 +1,49 @@
+import React from "react";
+import { WifiOutlined } from "@ant-design/icons";
+
 export const qrCodeTypes = [
   {
     label: "Wifi",
-    value: "wifi",
+    key: "wifi",
   },
   {
     label: "URL",
-    value: "url",
+    key: "url",
   },
   {
     label: "vCard",
-    value: "vcard",
+    key: "vcard",
   },
   {
     label: "Text",
-    value: "text",
+    key: "text",
   },
   {
     label: "SMS",
-    value: "sms",
+    key: "sms",
   },
-
   {
     label: "E-mail",
-    value: "email",
+    key: "email",
   },
   {
     label: "Twitter",
-    value: "twitter",
+    key: "twitter",
   },
   {
     label: "Facebook",
-    value: "Facebook",
+    key: "facebook",
   },
   {
     label: "PDF",
-    value: "pdf",
+    key: "pdf",
   },
   {
     label: "MP3",
-    value: "mp3",
+    key: "mp3",
   },
   {
     label: "Image",
-    value: "image",
+    key: "image",
   },
 ];

@@ -1,75 +1,95 @@
-import React, { useEffect, useState } from "react";
-import { Button, Input, Select } from "antd";
-import { qrCodeTypes } from "../data/qrCodeTypes";
-import { QRCodeCanvas } from "qrcode.react";
+import React, { useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import {
-  DownloadOutlined,
-  MoreOutlined,
-  PlusCircleFilled,
-  ShareAltOutlined,
-} from "@ant-design/icons";
+  AiOutlineQrcode,
+  AiOutlineFormatPainter,
+  AiOutlineDownload,
+  AiOutlineShareAlt,
+} from "react-icons/ai";
+import { WifiForm } from "../components";
+import { AccordionItem, Accordion, Button } from "@nextui-org/react";
+import SelectType from "../components/SelectType";
 function Creator() {
   const [selectedType, setSelectedType] = useState("wifi");
-
-  const handleSelectTypeChange = (value) => {
-    setSelectedType(value);
+  const [qrCodeValue, setQrCodeValue] = useState(null);
+  const [wifiFormData, setWifiFormData] = useState({
+    ssid: "",
+    password: "",
+    type: "WPA/WPA2",
+  });
+  const handleSelectTypeChange = (e) => {
+    setSelectedType(e.target.value);
   };
-  useEffect(() => {
-    console.log(selectedType);
-  }, [selectedType]);
   return (
-    <div className="creator-container">
-      <div className="qr-generator">
+    <div className="creator-container animate__animated animate__fadeInRight">
+      <div className="qr-generator ">
         <div className="qr-editor">
           <div className="left-side">
-            <Select
-              style={{ width: "100%" }}
-              options={qrCodeTypes}
-              showSearch
-              allowClear
-              placeholder={"Select QR code type"}
-              onChange={handleSelectTypeChange}
-              defaultValue={"wifi"}
-            />
-            <div className="editor-inputs">
-              {selectedType === "wifi" && (
-                <>
-                  <Input placeholder="Wifi SSID" />
-                  <Input placeholder="Wifi Password" />
-                  <Input placeholder="Network Type" />
-                </>
-              )}
-            </div>
+            <Accordion defaultExpandedKeys={["1"]} variant="light">
+              <AccordionItem
+                key="1"
+                indicator={<AiOutlineQrcode />}
+                aria-label="QR Code Information"
+                subtitle="Define the properties of your QR code"
+                title="QR Code Information"
+              >
+                <div className="editor-inputs" style={{ marginTop: "1rem" }}>
+                  <SelectType onChange={handleSelectTypeChange} />
+                  {selectedType === "wifi" && (
+                    <WifiForm
+                      data={wifiFormData}
+                      setData={setWifiFormData}
+                      setQrCodeValue={setQrCodeValue}
+                    />
+                  )}
+                </div>
+              </AccordionItem>
+              <AccordionItem
+                indicator={<AiOutlineFormatPainter />}
+                key="2"
+                aria-label="Customization"
+                subtitle="Customize your QR code to make it unique."
+                title="Customization"
+              >
+                sdadas
+              </AccordionItem>
+            </Accordion>
           </div>
           <div className="right-side">
             <div className="qr-container">
-              <QRCodeCanvas
-                value={"WIFI:S:MyNetwork;T:WEP;P:MyPassword;;"}
-                size={470}
+              <QRCodeSVG
+                value={qrCodeValue}
+                size={300} //max 470
                 bgColor={"#ffffff"}
                 fgColor={"#000000"}
                 level={"L"}
                 includeMargin={false}
                 imageSettings={{
-                  src: "https://static.zpao.com/favicon.png",
+                  src: "",
                   x: undefined,
                   y: undefined,
-                  height: 24,
-                  width: 24,
-                  excavate: true,
+                  height: 70,
+                  width: 70,
+                  excavate: false,
                 }}
               />
             </div>
             <div className="right-buttons">
-              <Button type="text" icon={<ShareAltOutlined />}>
+              <Button
+                variant="light"
+                style={{ width: "30%" }}
+                startContent={<AiOutlineShareAlt />}
+              >
                 Share
               </Button>
-              <Button.Group>
-                <Button type="primary" icon={<DownloadOutlined />}>
-                  Download as PNG
-                </Button>
-                <Button type="default" icon={<MoreOutlined/>}/>
-              </Button.Group>
+              <Button
+                variant="solid"
+                color="primary"
+                style={{ color: "white", width: "70%" }}
+                startContent={<AiOutlineDownload />}
+              >
+                Download as PNG
+              </Button>
             </div>
           </div>
         </div>

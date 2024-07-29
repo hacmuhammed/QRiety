@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components";
 function Home() {
   const navigate = useNavigate();
+  const [fadeOutClass, setFadeOutClass] = useState("");
   const hadleCreateClick = () => {
-    navigate("/qr-generator");
+    setFadeOutClass("animate__fadeOutLeft");
+    setTimeout(() => {
+      navigate("/qr-generator");
+    }, 300);
   };
   return (
     <>
       <Navbar />
-      <div className="home-container">
-        <div className="home-texts animate__animated animate__fadeInLeft">
+      <div
+        className={`home-container animate__animated animate__fadeInLeft ${fadeOutClass}`}
+      >
+        <div className={`home-texts animate__animated  `}>
           <h1 className="home-title ">
             Your One-Stop Solution for{" "}
             <span style={{ color: "#5AC5B1" }}>QR</span> Code Generation
