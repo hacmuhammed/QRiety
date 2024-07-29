@@ -1,6 +1,6 @@
 import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { qrCodeTypes } from "../data/qrCodeTypes";
+import { qrCodeTypes } from "../data/data";
 function SelectType({ onChange }) {
   return (
     <Select

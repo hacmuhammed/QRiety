@@ -6,17 +6,26 @@ import {
   AiOutlineDownload,
   AiOutlineShareAlt,
 } from "react-icons/ai";
-import { WifiForm } from "../components";
-import { AccordionItem, Accordion, Button } from "@nextui-org/react";
-import SelectType from "../components/SelectType";
+import {
+  WifiForm,
+  SelectType,
+  SizeSlider,
+  FgColorPicker,
+  BgColorPicker,
+} from "../components";
+import {
+  AccordionItem,
+  Accordion,
+  Button,
+  Select,
+  SelectItem,
+  Checkbox,
+} from "@nextui-org/react";
+import { qrCodeLevels, initialQrCode } from "../data/data";
+
 function Creator() {
   const [selectedType, setSelectedType] = useState("wifi");
-  const [qrCodeValue, setQrCodeValue] = useState(null);
-  const [wifiFormData, setWifiFormData] = useState({
-    ssid: "",
-    password: "",
-    type: "WPA/WPA2",
-  });
+  const [qrCodeProps, setQrCodeProps] = useState(initialQrCode);
   const handleSelectTypeChange = (e) => {
     setSelectedType(e.target.value);
   };
@@ -37,9 +46,8 @@ function Creator() {
                   <SelectType onChange={handleSelectTypeChange} />
                   {selectedType === "wifi" && (
                     <WifiForm
-                      data={wifiFormData}
-                      setData={setWifiFormData}
-                      setQrCodeValue={setQrCodeValue}
+                      qrCodeProps={qrCodeProps}
+                      setQrCodeProps={setQrCodeProps}
                     />
                   )}
                 </div>
@@ -51,25 +59,64 @@ function Creator() {
                 subtitle="Customize your QR code to make it unique."
                 title="Customization"
               >
-                sdadas
+                <div className="customize-container">
+                  <Select
+                    label="Error Level"
+                    aria-labelledby="ErrorLevel"
+                    style={{ width: "100%" }}
+                    onChange={(e) => {
+                      setQrCodeProps({ ...qrCodeProps, level: e.target.value });
+                    }}
+                    disallowEmptySelection
+                    defaultSelectedKeys={[qrCodeProps.level]}
+                    variant="bordered"
+                  >
+                    {qrCodeLevels.map((level) => (
+                      <SelectItem key={level.key}>{level.label}</SelectItem>
+                    ))}
+                  </Select>
+
+                  <SizeSlider
+                    qrCodeProps={qrCodeProps}
+                    setQrCodeProps={setQrCodeProps}
+                  />
+                  <div className={"colorPicker-container"}>
+                    <FgColorPicker
+                      qrCodeProps={qrCodeProps}
+                      setQrCodeProps={setQrCodeProps}
+                    />
+                    <BgColorPicker
+                      qrCodeProps={qrCodeProps}
+                      setQrCodeProps={setQrCodeProps}
+                    />
+                  </div>
+                  <Checkbox
+                    isSelected={qrCodeProps.margin}
+                    onValueChange={(value)=>{
+                      setQrCodeProps({ ...qrCodeProps, margin: value });
+                    }}
+                  >
+                    Include Margin
+                  </Checkbox>
+                </div>
               </AccordionItem>
             </Accordion>
           </div>
           <div className="right-side">
-            <div className="qr-container">
+            <div className="qr-container" >
               <QRCodeSVG
-                value={qrCodeValue}
-                size={300} //max 470
-                bgColor={"#ffffff"}
-                fgColor={"#000000"}
-                level={"L"}
-                includeMargin={false}
+                value={qrCodeProps.value}
+                size={qrCodeProps.size}
+                bgColor={qrCodeProps.bgColor}
+                fgColor={qrCodeProps.fgColor}
+                level={qrCodeProps.level}
+                includeMargin={qrCodeProps.margin}
                 imageSettings={{
                   src: "",
                   x: undefined,
                   y: undefined,
-                  height: 70,
-                  width: 70,
+                  height: 50,
+                  width: 100,
                   excavate: false,
                 }}
               />

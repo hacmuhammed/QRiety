@@ -2,18 +2,27 @@ import React from "react";
 import { Home, Creator } from "./containers";
 import { Navbar } from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ConfigProvider } from "antd";
+
+const theme = {
+  token: {
+    colorPrimary: "#C7516D",
+  },
+};
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar/>
-        <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Creator />} path="/qr-generator" />
-        </Routes>
-      </div>
-    </Router>
+    <ConfigProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route element={<Home />} path="/" />
+            <Route element={<Creator />} path="/qr-generator" />
+          </Routes>
+        </div>
+      </Router>
+    </ConfigProvider>
   );
 }
 

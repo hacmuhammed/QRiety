@@ -15,11 +15,9 @@ export default {
       themes: {
         light: {
           colors: {
-            primary: "#5ac5b1",
-
+            primary: "#C7516D",
           },
         },
-        
       },
     }),
   ],

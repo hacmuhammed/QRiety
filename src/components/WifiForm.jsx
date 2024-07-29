@@ -1,29 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { RadioGroup, Radio, Button, Input } from "@nextui-org/react";
-function WifiForm({ data, setData, setQrCodeValue }) {
+function WifiForm({ qrCodeProps, setQrCodeProps }) {
   const [disabledButton, setDisabledButton] = useState(true);
-  const [selected, setSelected] = useState(data.type);
+  const [wifiFormData, setWifiFormData] = useState({
+    ssid: "",
+    password: "",
+    type: "WPA/WPA2",
+  });
+  const [selected, setSelected] = useState(wifiFormData.type);
+
   const ssidChange = (e) => {
-    setData({ ...data, ssid: e.target.value });
+    setWifiFormData({ ...wifiFormData, ssid: e.target.value });
   };
   const passwordChange = (e) => {
-    setData({ ...data, password: e.target.value });
+    setWifiFormData({ ...wifiFormData, password: e.target.value });
   };
   const typeChange = (e) => {
     setSelected(e.target.value);
-    setData({ ...data, type: e.target.value });
+    setWifiFormData({ ...wifiFormData, type: e.target.value });
   };
   const handleGenerate = () => {
-    setQrCodeValue(`WIFI:S:${data.ssid};T:${selected};P:${data.password};;`);
+    setQrCodeProps({
+      ...qrCodeProps,
+      value: `WIFI:S:${wifiFormData.ssid};T:${selected};P:${wifiFormData.password};;`,
+    });
   };
-
   useEffect(() => {
-    if (data.ssid && data.password) {
+    if (wifiFormData.ssid && wifiFormData.password) {
       setDisabledButton(false);
     } else {
       setDisabledButton(true);
     }
-  }, [data]);
+  }, [wifiFormData]);
   return (
     <div className="wifi_form-container">
       <Input
@@ -31,8 +39,8 @@ function WifiForm({ data, setData, setQrCodeValue }) {
         variant="bordered"
         size="sm"
         type="text"
-        label="Wifi SSID"
-        value={data?.ssid}
+        label="SSID"
+        value={qrCodeProps?.ssid}
         onChange={ssidChange}
       />
       <Input
@@ -44,7 +52,7 @@ function WifiForm({ data, setData, setQrCodeValue }) {
         onChange={passwordChange}
       />
       <RadioGroup
-        orientation={'horizontal'}
+        orientation={"horizontal"}
         label="Network Type"
         value={selected}
         onChange={typeChange}
@@ -60,7 +68,7 @@ function WifiForm({ data, setData, setQrCodeValue }) {
         variant="shadow"
         color="primary"
         style={{
-          color:"white"
+          color: "white",
         }}
       >
         Generate QR Code

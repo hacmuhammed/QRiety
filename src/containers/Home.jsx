@@ -19,7 +19,7 @@ function Home() {
         <div className={`home-texts animate__animated  `}>
           <h1 className="home-title ">
             Your One-Stop Solution for{" "}
-            <span style={{ color: "#5AC5B1" }}>QR</span> Code Generation
+            <span style={{ color: "var(--color-primary)" }}>QR</span> Code Generation
           </h1>
           <p>Create, Customize and Share QR Codes with Ease.</p>
         </div>
