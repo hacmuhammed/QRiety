@@ -1,6 +1,10 @@
-export { default as Navbar} from "./Navbar"
-export {default as WifiForm} from './WifiForm'
-export { default as SelectType} from './SelectType'
-export {default as SizeSlider} from './SizeSlider'
-export { default as FgColorPicker } from "./FgColorPicker";
-export {default as BgColorPicker} from "./BgColorPicker"
+export { default as Navbar } from "./Navbar";
+export { default as WifiForm } from "./WifiForm";
+export { default as SelectType } from "./SelectType";
+export { default as SizeSlider } from "./SizeSlider";
+export { default as DotsColorPicker } from "./DotsColorPicker";
+export { default as CornerSqaurColorPicker } from "./CornerSqaurColorPicker";
+export { default as CornerDotColorPicker } from "./CornerDotColorPicker";
+export { default as BgColorPicker } from "./BgColorPicker";
+export { default as DynamicQRCode } from "./DynamicQRCode";
+export { default as ColorPickers } from "./ShapesSettings";

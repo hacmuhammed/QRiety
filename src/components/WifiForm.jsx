@@ -65,7 +65,7 @@ function WifiForm({ qrCodeProps, setQrCodeProps }) {
       <Button
         isDisabled={disabledButton}
         onClick={handleGenerate}
-        variant="shadow"
+        variant={disabledButton ? "flat" : "shadow"}
         color="primary"
         style={{
           color: "white",

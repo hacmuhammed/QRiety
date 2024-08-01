@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import { QRCodeSVG } from "qrcode.react";
+import React, {  useState } from "react";
 import {
   AiOutlineQrcode,
   AiOutlineFormatPainter,
   AiOutlineDownload,
   AiOutlineShareAlt,
+  AiOutlinePaperClip,
 } from "react-icons/ai";
 import {
   WifiForm,
   SelectType,
-  SizeSlider,
-  FgColorPicker,
-  BgColorPicker,
+  DynamicQRCode,
+  ColorPickers,
 } from "../components";
 import {
   AccordionItem,
@@ -21,11 +20,12 @@ import {
   SelectItem,
   Checkbox,
 } from "@nextui-org/react";
-import { qrCodeLevels, initialQrCode } from "../data/data";
+import { qrCodeLevels, initialQrCode, dotTypes } from "../data/data";
 
 function Creator() {
   const [selectedType, setSelectedType] = useState("wifi");
   const [qrCodeProps, setQrCodeProps] = useState(initialQrCode);
+  const [includeImage, setIncludeImage] = useState(false);
   const handleSelectTypeChange = (e) => {
     setSelectedType(e.target.value);
   };
@@ -34,7 +34,7 @@ function Creator() {
       <div className="qr-generator ">
         <div className="qr-editor">
           <div className="left-side">
-            <Accordion defaultExpandedKeys={["1"]} variant="light">
+            <Accordion defaultExpandedKeys={["2"]} variant="light">
               <AccordionItem
                 key="1"
                 indicator={<AiOutlineQrcode />}
@@ -56,70 +56,67 @@ function Creator() {
                 indicator={<AiOutlineFormatPainter />}
                 key="2"
                 aria-label="Customization"
-                subtitle="Customize your QR code to make it unique."
+                subtitle="Customize your QR code to make it unique"
                 title="Customization"
               >
+                <ColorPickers
+                  qrCodeProps={qrCodeProps}
+                  setQrCodeProps={setQrCodeProps}
+                />
+                <div className="qrcode-shapes">
+                  <h1>Shapes</h1>
+                  
+                </div>
+              </AccordionItem>
+              <AccordionItem
+                indicator={<AiOutlinePaperClip />}
+                key="3"
+                aria-label="QR Icon"
+                subtitle="Add an icon to your QR code to make it extra special"
+                title="QR Icon"
+              >
                 <div className="customize-container">
-                  <Select
-                    label="Error Level"
-                    aria-labelledby="ErrorLevel"
-                    style={{ width: "100%" }}
-                    onChange={(e) => {
-                      setQrCodeProps({ ...qrCodeProps, level: e.target.value });
-                    }}
-                    disallowEmptySelection
-                    defaultSelectedKeys={[qrCodeProps.level]}
-                    variant="bordered"
-                  >
-                    {qrCodeLevels.map((level) => (
-                      <SelectItem key={level.key}>{level.label}</SelectItem>
-                    ))}
-                  </Select>
-
-                  <SizeSlider
-                    qrCodeProps={qrCodeProps}
-                    setQrCodeProps={setQrCodeProps}
-                  />
-                  <div className={"colorPicker-container"}>
-                    <FgColorPicker
-                      qrCodeProps={qrCodeProps}
-                      setQrCodeProps={setQrCodeProps}
-                    />
-                    <BgColorPicker
-                      qrCodeProps={qrCodeProps}
-                      setQrCodeProps={setQrCodeProps}
-                    />
-                  </div>
                   <Checkbox
                     isSelected={qrCodeProps.margin}
-                    onValueChange={(value)=>{
+                    onValueChange={(value) => {
                       setQrCodeProps({ ...qrCodeProps, margin: value });
                     }}
                   >
                     Include Margin
                   </Checkbox>
+                  <Checkbox
+                    isSelected={includeImage}
+                    onValueChange={(value) => {
+                      setIncludeImage(value);
+                    }}
+                  >
+                    QR Code Icon
+                  </Checkbox>
+                  {includeImage && <p>dsadasasddsasad</p>}
                 </div>
               </AccordionItem>
             </Accordion>
           </div>
+          <div className="divider"></div>
           <div className="right-side">
-            <div className="qr-container" >
-              <QRCodeSVG
-                value={qrCodeProps.value}
-                size={qrCodeProps.size}
-                bgColor={qrCodeProps.bgColor}
-                fgColor={qrCodeProps.fgColor}
-                level={qrCodeProps.level}
-                includeMargin={qrCodeProps.margin}
-                imageSettings={{
-                  src: "",
-                  x: undefined,
-                  y: undefined,
-                  height: 50,
-                  width: 100,
-                  excavate: false,
-                }}
-              />
+            <Select
+              size="sm"
+              label="Error Level"
+              aria-labelledby="ErrorLevel"
+              style={{ width: "100%" }}
+              onChange={(e) => {
+                setQrCodeProps({ ...qrCodeProps, level: e.target.value });
+              }}
+              disallowEmptySelection
+              defaultSelectedKeys={[qrCodeProps.level]}
+              variant="bordered"
+            >
+              {qrCodeLevels.map((level) => (
+                <SelectItem key={level.key}>{level.label}</SelectItem>
+              ))}
+            </Select>
+            <div className="qr-container">
+              <DynamicQRCode qrCodeProps={qrCodeProps} />
             </div>
             <div className="right-buttons">
               <Button

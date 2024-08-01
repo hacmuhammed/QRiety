@@ -68,12 +68,23 @@ const qrCodeLevels = [
 ];
 
 const initialQrCode = {
-  value: "https://www.qriety.com", //done
-  size: 300, //done
-  level: "L", //done
-  fgColor: "#000", //done
-  bgColor: "#fff", //done
-  margin: false, //done
+  value: "https://www.qriety.com",
+  size: 400,
+  level: "L",
+  bgColor: "#fff",
+  margin: false,
+  dotsOptions: {
+    color: "#00000",
+    type: "square",
+  },
+  cornersDotOptions: {
+    color: "#000000",
+    type: "square",
+  },
+  cornersSquareOptions: {
+    color: "#000000",
+    type: "square",
+  },
   image: {
     source: null,
     width: 24,
@@ -85,4 +96,76 @@ const initialQrCode = {
   },
 };
 
-export { qrCodeTypes, qrCodeLevels, initialQrCode };
+const corderSqaureTypes = [
+  {
+    key: "square",
+    label: "Square",
+    path: "Images/Shapes/CornerSquare/Square.png",
+  },
+  {
+    key: "extra-rounded",
+    label: "Rounded",
+    path: "Images/Shapes/CornerSquare/Rounded.png",
+  },
+  {
+    key: "rounded",
+    label: "Extra Rounded",
+    path: "Images/Shapes/CornerSquare/ExtraRounded.png",
+  },
+];
+
+const dotTypes = [
+  {
+    key: "square",
+    label: "Square",
+    path: "Images/Shapes/Dots/Square.png",
+  },
+  {
+    key: "rounded",
+    label: "Rounded",
+    path: "Images/Shapes/Dots/Rounded.png",
+  },
+  {
+    key: "dots",
+    label: "Dots",
+    path: "Images/Shapes/Dots/Dots.png",
+  },
+  {
+    key: "classy",
+    label: "Classy",
+    path: "Images/Shapes/Dots/Classy.png",
+  },
+  {
+    key: "classy-rounded",
+    label: "Classy Rounded",
+    path: "Images/Shapes/Dots/ClassyRounded.png",
+  },
+
+  {
+    key: "extra-rounded",
+    label: "Extra Rounded",
+    path: "Images/Shapes/Dots/ExtraRounded.png",
+  },
+];
+
+const cornerDotsTypes = [
+  {
+    key: "square",
+    label: "Square",
+    path: "Images/Shapes/CornerDots/Square.png",
+  },
+  {
+    key: "dot",
+    label: "Dot",
+    path: "Images/Shapes/CornerDots/Dot.png",
+  },
+];
+
+export {
+  qrCodeTypes,
+  qrCodeLevels,
+  initialQrCode,
+  dotTypes,
+  corderSqaureTypes,
+  cornerDotsTypes,
+};

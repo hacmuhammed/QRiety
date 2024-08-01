@@ -5,7 +5,7 @@
 
 :root {
   --font-quiksand: "Quicksand", sans-serif;
-  --color-primary: #C7516D;
+  --color-primary: #c7516d;
   --color-secondary: #0f1841;
 }
 * {
@@ -83,41 +83,24 @@
 }
 
 .creator-container {
-  width: 100%;
+  width: 75%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background: red; */
-  overflow: hidden;
-  scrollbar-width: none;
 }
 
 .qr-generator {
-  width: 75%;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   padding: 10rem 0rem 4rem 0rem;
-  gap: 2rem;
-  /* background: yellow; */
 }
-.editor-h1 {
-  font-weight: bolder;
-  font-size: 16pt;
-}
-.qr-container {
-  padding: 2rem;
-  border-radius: 0.3rem;
-  width: 30rem;
-  height: 30rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: var(--color-secondary) 2px dashed;
-}
+
 .qr-editor {
   width: 100%;
   height: 100%;
@@ -125,20 +108,32 @@
   align-items: center;
   justify-content: space-between;
   background: rgba(255, 255, 255, 1);
-  -webkit-box-shadow: 0px 0px 12px 0px #dddddd ;
+  -webkit-box-shadow: 0px 0px 12px 0px #dddddd !important;
   -moz-box-shadow: 0px 0px 12px 0px #dddddd !important;
   box-shadow: 0px 0px 12px 0px #cacaca !important;
   border-radius: 1rem;
+  backdrop-filter: blur(10px) !important;
   padding: 2rem;
-
+}
+.editor-h1 {
+  font-weight: bolder;
+  font-size: 16pt;
+}
+.qr-container {
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .left-side {
-  width: 60%;
+  width: 70%;
   height: 100%;
-  /* background: red; */
-  margin-right: 1rem;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  white-space: nowrap,
 }
 .customization-panel {
   margin-top: 1rem;
@@ -151,17 +146,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  
-
+  width: 30%;
+  height: 100%;
 }
 .editor-inputs {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* background: teal; */
 }
-
+.divider {
+  height: 80%;
+  width: 1px;
+  background: #ffffff;
+  margin: 0px 2rem 0px 2rem;
+  border: dashed 1px #eeeeee;
+}
 .right-buttons {
   width: 100%;
   display: flex;
@@ -174,14 +174,65 @@
   flex-direction: column;
   gap: 1rem;
 }
-.customize-container{
+.customize-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: start;
 }
-.colorPicker-container{
+.qrcode-shapes {
+  margin-top: 1rem;
+}
+.dot-settings {
   display: flex;
-  gap: 1rem;
+}
+.colorPicker-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
+  /* background: #000; */
+  .qr-shapes-settings {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background: red; */
+    gap: 1rem;
+  }
+  .settings {
+    display: flex;
+    flex-direction: column;
+    /* background: yellow; */
+    gap: 1rem;
+    width: 100%;
+  }
+  .settings-details {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+    /* background: green; */
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+.qr {
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+.hide-radio-dot label span {
+  display: none !important;
+}
+@media (max-width: 1080px) {
+  .right-buttons {
+    flex-direction: column;
+  }
 }

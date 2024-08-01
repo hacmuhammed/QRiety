@@ -4,16 +4,16 @@ import React from "react";
 function SizeSlider({ qrCodeProps, setQrCodeProps }) {
   return (
     <Slider
-      label="Size"
+      aria-label="Size"
       step={1}
-      maxValue={400}
+      maxValue={480}
       minValue={200}
       defaultValue={qrCodeProps.size}
       size="sm"
       onChange={(value) => {
         setQrCodeProps({ ...qrCodeProps, size: value });
       }}
-      hideValue
+      // hideValue
     />
   );
 }

@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ColorPicker } from "antd";
 
 function BgColorPicker({ qrCodeProps, setQrCodeProps }) {
   return (
     <>
       <ColorPicker
-        // style={{ border: "0px" }}
+        style={{ width: "100%" }}
         trigger="hover"
-        onChange={(color) => {
+        onChangeComplete={(color) => {
           setQrCodeProps({ ...qrCodeProps, bgColor: "#" + color.toHex() });
         }}
         defaultValue={qrCodeProps.bgColor}
-        showText={(color) => <span>Background - {color.toHexString()}</span>}
+        showText={(color) => <span>{color.toHexString()}</span>}
       />
     </>
   );
