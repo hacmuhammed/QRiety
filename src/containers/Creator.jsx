@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   AiOutlineQrcode,
   AiOutlineFormatPainter,
@@ -10,7 +10,7 @@ import {
   WifiForm,
   SelectType,
   DynamicQRCode,
-  ColorPickers,
+  ShapesSettings,
 } from "../components";
 import {
   AccordionItem,
@@ -34,7 +34,7 @@ function Creator() {
       <div className="qr-generator ">
         <div className="qr-editor">
           <div className="left-side">
-            <Accordion defaultExpandedKeys={["2"]} variant="light">
+            <Accordion defaultExpandedKeys={["1"]} variant="light">
               <AccordionItem
                 key="1"
                 indicator={<AiOutlineQrcode />}
@@ -59,14 +59,10 @@ function Creator() {
                 subtitle="Customize your QR code to make it unique"
                 title="Customization"
               >
-                <ColorPickers
+                <ShapesSettings
                   qrCodeProps={qrCodeProps}
                   setQrCodeProps={setQrCodeProps}
                 />
-                <div className="qrcode-shapes">
-                  <h1>Shapes</h1>
-                  
-                </div>
               </AccordionItem>
               <AccordionItem
                 indicator={<AiOutlinePaperClip />}
@@ -75,24 +71,17 @@ function Creator() {
                 subtitle="Add an icon to your QR code to make it extra special"
                 title="QR Icon"
               >
-                <div className="customize-container">
-                  <Checkbox
-                    isSelected={qrCodeProps.margin}
-                    onValueChange={(value) => {
-                      setQrCodeProps({ ...qrCodeProps, margin: value });
-                    }}
-                  >
-                    Include Margin
-                  </Checkbox>
-                  <Checkbox
-                    isSelected={includeImage}
-                    onValueChange={(value) => {
-                      setIncludeImage(value);
-                    }}
-                  >
-                    QR Code Icon
-                  </Checkbox>
-                  {includeImage && <p>dsadasasddsasad</p>}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  className="customize-container"
+                >
+                  <h1 style={{ color: "var(--color-primary)" }}>
+                    Coming Soon..
+                  </h1>
                 </div>
               </AccordionItem>
             </Accordion>

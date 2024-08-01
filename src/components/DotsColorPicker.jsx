@@ -5,9 +5,9 @@ function DotsColorPicker({ qrCodeProps, setQrCodeProps }) {
   return (
     <>
       <ColorPicker
-        style={{ width: "100%" }}
+        style={{ width: "100%", border: "none", marginTop:".75rem" }}
         trigger="hover"
-        
+        panelRender
         onChangeComplete={(color) => {
           setQrCodeProps({
             ...qrCodeProps,
@@ -17,6 +17,7 @@ function DotsColorPicker({ qrCodeProps, setQrCodeProps }) {
             },
           });
         }}
+        placement="bottom"
         defaultValue={qrCodeProps.dotsOptions.color}
         showText={(color) => <span>{color.toHexString()}</span>}
       />

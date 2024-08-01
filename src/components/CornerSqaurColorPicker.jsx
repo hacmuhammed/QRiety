@@ -5,7 +5,7 @@ function CornerSqaurColorPicker({ qrCodeProps, setQrCodeProps }) {
   return (
     <>
       <ColorPicker
-        style={{ width: "100%" }}
+        style={{ width: "100%", border: "none", marginTop: ".75rem" }}
         trigger="hover"
         onChangeComplete={(color) => {
           setQrCodeProps({
@@ -16,6 +16,7 @@ function CornerSqaurColorPicker({ qrCodeProps, setQrCodeProps }) {
             },
           });
         }}
+        placement="bottom"
         defaultValue={qrCodeProps.cornersSquareOptions.color}
         showText={(color) => <span>{color.toHexString()}</span>}
       />

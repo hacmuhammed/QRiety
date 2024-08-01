@@ -15,7 +15,7 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
       <div className="qr-shapes-settings">
         <div className="row">
           <div className="settings">
-            <h1>Dots Options</h1>
+            <h1 className="settings-h1">Dots Options</h1>
             <div className="settings-details">
               <RadioGroup
                 classNames={{
@@ -23,7 +23,7 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
                 }}
                 orientation="horizontal"
                 aria-labelledby="Dots Shapes"
-                description="Select your QR code dots shape"
+                description="Select your QR code dots shape and color"
                 value={qrCodeProps.dotsOptions.type}
                 onValueChange={(value) => {
                   setQrCodeProps({
@@ -44,16 +44,16 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
                     />
                   </CustomRadio>
                 ))}
+                <DotsColorPicker
+                  qrCodeProps={qrCodeProps}
+                  setQrCodeProps={setQrCodeProps}
+                />
               </RadioGroup>
-              <DotsColorPicker
-                qrCodeProps={qrCodeProps}
-                setQrCodeProps={setQrCodeProps}
-              />
             </div>
           </div>
-
+          <div className="horizontal-divider"></div>
           <div className="settings">
-            <h1>Corner Squares Options</h1>
+            <h1 className="settings-h1">Corner Squares Options</h1>
             <div className="settings-details">
               <RadioGroup
                 classNames={{
@@ -61,7 +61,7 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
                 }}
                 orientation="horizontal"
                 aria-labelledby="Dots Shapes"
-                description="Select your QR code corner squares shape"
+                description="Select your QR code corner squares shape and color"
                 value={qrCodeProps.cornersSquareOptions.type}
                 onValueChange={(value) => {
                   setQrCodeProps({
@@ -82,18 +82,20 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
                     />
                   </CustomRadio>
                 ))}
-              </RadioGroup>
               <CornerSqaurColorPicker
                 qrCodeProps={qrCodeProps}
                 setQrCodeProps={setQrCodeProps}
               />
+              </RadioGroup>
             </div>
           </div>
         </div>
 
         <div className="row">
+          <div className="horizontal-divider"></div>
+
           <div className="settings">
-            <h1>Corner Dots Options</h1>
+            <h1 className="settings-h1">Corner Dots Options</h1>
             <div className="settings-details">
               <RadioGroup
                 classNames={{
@@ -101,7 +103,7 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
                 }}
                 orientation="horizontal"
                 aria-labelledby="Dots Shapes"
-                description="Select your QR code corner dots shape"
+                description="Select your QR code corner dots shape and color"
                 value={qrCodeProps.cornersDotOptions.type}
                 onValueChange={(value) => {
                   setQrCodeProps({
@@ -122,15 +124,17 @@ function ShapesSettings({ qrCodeProps, setQrCodeProps }) {
                     />
                   </CustomRadio>
                 ))}
-              </RadioGroup>
               <CornerDotColorPicker
                 qrCodeProps={qrCodeProps}
                 setQrCodeProps={setQrCodeProps}
               />
+              </RadioGroup>
             </div>
           </div>
+          <div className="horizontal-divider"></div>
+
           <div className="settings">
-            <h1>Background Color</h1>
+            <h1 className="settings-h1">Background Color</h1>
             <div className="settings-details">
               <BgColorPicker
                 qrCodeProps={qrCodeProps}

@@ -5,7 +5,7 @@
 
 :root {
   --font-quiksand: "Quicksand", sans-serif;
-  --color-primary: #c7516d;
+  --color-primary: #8F5CFC;
   --color-secondary: #0f1841;
 }
 * {
@@ -133,7 +133,7 @@
   flex-direction: column;
   overflow-y: scroll;
   scrollbar-width: thin;
-  white-space: nowrap,
+  white-space: nowrap;
 }
 .customization-panel {
   margin-top: 1rem;
@@ -231,8 +231,29 @@
 .hide-radio-dot label span {
   display: none !important;
 }
+.picker-container {
+  width: 115.2px;
+  height: 115.2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.horizontal-divider{
+  width: 100%;
+  height: 1px;
+  background: #ffffff;
+  margin:0.5rem 0px 0.5rem 0px ;
+  border: dashed 1px #eeeeee;
+}
+.settings-h1{
+  color: var(--color-primary);
+  font-weight: 600;
+}
 @media (max-width: 1080px) {
   .right-buttons {
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+  .right-buttons button {
+    width: 100% !important;
   }
 }

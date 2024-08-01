@@ -5,7 +5,8 @@ function BgColorPicker({ qrCodeProps, setQrCodeProps }) {
   return (
     <>
       <ColorPicker
-        style={{ width: "100%" }}
+        style={{ width: "100%", border: "none"  }}
+        placement="bottom"
         trigger="hover"
         onChangeComplete={(color) => {
           setQrCodeProps({ ...qrCodeProps, bgColor: "#" + color.toHex() });

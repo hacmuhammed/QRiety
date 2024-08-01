@@ -135,7 +135,7 @@ const dotTypes = [
     label: "Classy",
     path: "Images/Shapes/Dots/Classy.png",
   },
-  {
+  { 
     key: "classy-rounded",
     label: "Classy Rounded",
     path: "Images/Shapes/Dots/ClassyRounded.png",

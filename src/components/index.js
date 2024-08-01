@@ -7,4 +7,4 @@ export { default as CornerSqaurColorPicker } from "./CornerSqaurColorPicker";
 export { default as CornerDotColorPicker } from "./CornerDotColorPicker";
 export { default as BgColorPicker } from "./BgColorPicker";
 export { default as DynamicQRCode } from "./DynamicQRCode";
-export { default as ColorPickers } from "./ShapesSettings";
+export { default as ShapesSettings } from "./ShapesSettings";
